@@ -12,6 +12,11 @@ namespace SQLite
         public MainPage()
         {
             InitializeComponent();
+            SQLiteAsyncConnection database;
+            string db;
+            db = DependencyService.Get<ISQLite>().GetLocalFilePath("Datos_Registro.db");
+            database = new SQLiteAsyncConnection(db);
+            database.CreateTableAsync<Datos_Registro>().Wait();
         }
     }
 }
